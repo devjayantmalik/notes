@@ -17,7 +17,7 @@ PreviewPanel.propTypes = {
 };
 
 PreviewPanel.defaultProps = {
-  html: "",
+  html: "No content to display.",
 };
 
 export default PreviewPanel;
