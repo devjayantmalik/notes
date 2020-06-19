@@ -17,11 +17,7 @@ export default class Header extends React.Component {
               <span className="mx-2">{brandTitle}</span>
             </Link>
 
-            <div
-              className="navbar-burger burger"
-              role="button"
-              onClick={this._toggleNav}
-            >
+            <div className="navbar-burger burger" role="button">
               <span></span>
               <span></span>
               <span></span>

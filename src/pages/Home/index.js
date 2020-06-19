@@ -1,25 +1,17 @@
 import React from "react";
-import Header from "../../components/Header";
-import logo from "../../assets/home/logo.png";
 import QuickStats from "../../components/QuickStats";
 import SiteArea, { LeftSidebar, ContentArea } from "../../components/SiteArea";
 import CategoryPanel from "../../components/CategoryPanel";
 import SortPanel from "../../components/SortPanel";
 import Notes from "../../components/Notes";
-import Footer from "../../components/Footer";
+import PageHeader from "../partials/PageHeader";
+import PageFooter from "../partials/PageFooter";
 
 export default class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Header brandTitle="Notes" brandLogo={logo}>
-          <Header.Link to="/" title="Home" />
-          <Header.Link to="/" title="Timeline" />
-          <Header.Link to="/" title="New Note" />
-          <Header.Link to="/" title="New Category" />
-          <Header.Link to="/" title="About" />
-          <Header.Link to="/" title="Contact" />
-        </Header>
+        <PageHeader />
 
         <main>
           <QuickStats>
@@ -44,7 +36,7 @@ export default class Home extends React.Component {
             </ContentArea>
           </SiteArea>
         </main>
-        <Footer />
+        <PageFooter />
       </React.Fragment>
     );
   }
