@@ -1,13 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-export const CategoryItem = ({ title, categoryUrl }) => {
-  return (
-    <li>
-      <Link to={categoryUrl}>{title}</Link>
-    </li>
-  );
-};
+import CategoryItem from "./CategoryItem";
 
 export default class CategoryPanel extends React.Component {
   static Item = CategoryItem;

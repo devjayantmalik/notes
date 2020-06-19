@@ -1,4 +1,6 @@
 import React from "react";
+import LeftSidebar from "./LeftSidebar";
+import ContentArea from "./ContentArea";
 
 const SiteArea = ({ children }) => {
   return (
@@ -8,16 +10,5 @@ const SiteArea = ({ children }) => {
   );
 };
 
-export const LeftSidebar = ({ children }) => {
-  return <aside className="column is-one-quarter mx-2 my-2">{children}</aside>;
-};
-
-export const ContentArea = ({ children }) => {
-  return (
-    <section className="column mx-2 my-2">
-      <div className="content">{children}</div>
-    </section>
-  );
-};
-
 export default SiteArea;
+export { LeftSidebar, ContentArea };
