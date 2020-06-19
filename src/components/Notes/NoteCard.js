@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const NoteCard = (props) => {
   const { category, date, title, description } = props.note;
-  const { detailUrl, editUrl, deleteUrl, onFavorite } = props;
+  const { detailUrl, editUrl, deleteUrl } = props;
 
   return (
     <div className="column is-one-third-desktop is-full-tablet">
@@ -42,7 +42,6 @@ const NoteCard = (props) => {
               Delete
             </Link>
           )}
-          {onFavorite && <button className="card-footer-item">Favorite</button>}
         </footer>
       </article>
     </div>
@@ -54,7 +53,6 @@ NoteCard.propTypes = {
   detailUrl: PropTypes.string.isRequired,
   editUrl: PropTypes.string.isRequired,
   deleteUrl: PropTypes.string.isRequired,
-  onFavorite: PropTypes.func,
 };
 
 NoteCard.defaultProps = {

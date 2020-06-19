@@ -18,7 +18,6 @@ export default class Notes extends React.Component {
             detailUrl="/"
             editUrl="/"
             deleteUrl="/"
-            onFavorite={() => {}}
           />
           <NoteCard
             note={{
@@ -32,7 +31,6 @@ export default class Notes extends React.Component {
             detailUrl="/"
             editUrl="/"
             deleteUrl="/"
-            onFavorite={() => {}}
           />
           <NoteCard
             note={{
@@ -46,7 +44,6 @@ export default class Notes extends React.Component {
             detailUrl="/"
             editUrl="/"
             deleteUrl="/"
-            onFavorite={() => {}}
           />
           <NoteCard
             note={{
@@ -60,7 +57,6 @@ export default class Notes extends React.Component {
             detailUrl="/"
             editUrl="/"
             deleteUrl="/"
-            onFavorite={() => {}}
           />
           <NoteCard
             note={{
@@ -74,7 +70,6 @@ export default class Notes extends React.Component {
             detailUrl="/"
             editUrl="/"
             deleteUrl="/"
-            onFavorite={() => {}}
           />
           <NoteCard
             note={{
@@ -88,7 +83,6 @@ export default class Notes extends React.Component {
             detailUrl="/"
             editUrl="/"
             deleteUrl="/"
-            onFavorite={() => {}}
           />
         </div>
       </section>
