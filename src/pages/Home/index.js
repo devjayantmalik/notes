@@ -4,8 +4,6 @@ import SiteArea, { LeftSidebar, ContentArea } from "../../components/SiteArea";
 import CategoryPanel from "../../components/CategoryPanel";
 import SortPanel from "../../components/SortPanel";
 import Notes from "../../components/Notes";
-import PageHeader from "../partials/PageHeader";
-import PageFooter from "../partials/PageFooter";
 
 export default class Home extends React.Component {
   render() {
