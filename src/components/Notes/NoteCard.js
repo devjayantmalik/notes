@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const NoteCard = (props) => {
-  const { category, date, title, description } = props.note;
-  const { detailUrl, editUrl, deleteUrl } = props;
+  const { id, category, pub_date, title, description } = props.note;
+  const { detailUrl, editUrl, onDelete } = props;
 
   return (
     <div className="column is-one-third-desktop is-full-tablet">
@@ -12,7 +12,9 @@ const NoteCard = (props) => {
         <header className="card-header">
           <p className="card-header-title">{category}</p>
 
-          <p className="card-header-icon">{new Date(date).toDateString()}</p>
+          <p className="card-header-icon">
+            {new Date(pub_date).toDateString()}
+          </p>
         </header>
         <div className="card-content">
           <div className="content">
@@ -37,8 +39,12 @@ const NoteCard = (props) => {
               Edit
             </Link>
           )}
-          {deleteUrl && (
-            <Link to={deleteUrl} className="card-footer-item">
+          {onDelete && (
+            <Link
+              to=""
+              onClick={() => onDelete(id)}
+              className="card-footer-item"
+            >
               Delete
             </Link>
           )}
@@ -52,7 +58,7 @@ NoteCard.propTypes = {
   note: PropTypes.object,
   detailUrl: PropTypes.string.isRequired,
   editUrl: PropTypes.string.isRequired,
-  deleteUrl: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 NoteCard.defaultProps = {
@@ -60,7 +66,7 @@ NoteCard.defaultProps = {
     title: "",
     description: "",
     category: "",
-    date: new Date(),
+    pub_date: new Date(),
   },
 };
 

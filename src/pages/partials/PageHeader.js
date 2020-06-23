@@ -6,11 +6,8 @@ const PageHeader = () => {
   return (
     <Header brandTitle="Notes" brandLogo={logo}>
       <Header.Link to="/" title="Home" />
-      <Header.Link to="/" title="Timeline" />
-      <Header.Link to="/" title="New Note" />
-      <Header.Link to="/" title="New Category" />
-      <Header.Link to="/" title="About" />
-      <Header.Link to="/" title="Contact" />
+      <Header.Link to="/create" title="New Note" />
+      <Header.Link to="/about" title="About" />
     </Header>
   );
 };

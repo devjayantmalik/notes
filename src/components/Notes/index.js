@@ -1,91 +1,52 @@
 import React from "react";
 import NoteCard from "./NoteCard";
+import Spinner from "../Spinner";
 
-export default class Notes extends React.Component {
+import { connect } from "react-redux";
+import { fetchNotes, removeNote } from "../../services/notes/actions";
+
+class Notes extends React.Component {
+  state = { loading: true };
+
+  componentDidMount() {
+    this.props.fetchNotes(null, null, () => {
+      this.setState({ loading: false });
+    });
+  }
+
+  _handleDelete = (id) => {
+    this.props.removeNote(id);
+    alert(
+      "Note deleted successfully, please refresh the page to see the changes."
+    );
+  };
+
+  _renderNotes = () => {
+    if (this.state.loading) {
+      return <Spinner />;
+    }
+    return this.props.notes.map((note) => (
+      <NoteCard
+        key={note.id}
+        note={note}
+        detailUrl={`/detail/${note.id}`}
+        editUrl={`/edit/${note.id}`}
+        onDelete={this._handleDelete}
+      />
+    ));
+  };
+
   render() {
     return (
       <section className="section">
-        <div className="columns is-multiline">
-          <NoteCard
-            note={{
-              title:
-                "Hello, Jane! You forgot to pickup the lunch. By the way, no need to worry we all forget it.",
-              description:
-                "This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.",
-              category: "Arts",
-              date: new Date(),
-            }}
-            detailUrl="/"
-            editUrl="/"
-            deleteUrl="/"
-          />
-          <NoteCard
-            note={{
-              title:
-                "Hello, Jane! You forgot to pickup the lunch. By the way, no need to worry we all forget it.",
-              description:
-                "This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.",
-              category: "Arts",
-              date: new Date(),
-            }}
-            detailUrl="/"
-            editUrl="/"
-            deleteUrl="/"
-          />
-          <NoteCard
-            note={{
-              title:
-                "Hello, Jane! You forgot to pickup the lunch. By the way, no need to worry we all forget it.",
-              description:
-                "This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.",
-              category: "Arts",
-              date: new Date(),
-            }}
-            detailUrl="/"
-            editUrl="/"
-            deleteUrl="/"
-          />
-          <NoteCard
-            note={{
-              title:
-                "Hello, Jane! You forgot to pickup the lunch. By the way, no need to worry we all forget it.",
-              description:
-                "This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.",
-              category: "Arts",
-              date: new Date(),
-            }}
-            detailUrl="/"
-            editUrl="/"
-            deleteUrl="/"
-          />
-          <NoteCard
-            note={{
-              title:
-                "Hello, Jane! You forgot to pickup the lunch. By the way, no need to worry we all forget it.",
-              description:
-                "This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.",
-              category: "Arts",
-              date: new Date(),
-            }}
-            detailUrl="/"
-            editUrl="/"
-            deleteUrl="/"
-          />
-          <NoteCard
-            note={{
-              title:
-                "Hello, Jane! You forgot to pickup the lunch. By the way, no need to worry we all forget it.",
-              description:
-                "This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.This is the world's best experience of the developers working with taking notes for you.",
-              category: "Arts",
-              date: new Date(),
-            }}
-            detailUrl="/"
-            editUrl="/"
-            deleteUrl="/"
-          />
-        </div>
+        <div className="columns is-multiline">{this._renderNotes()}</div>
       </section>
     );
   }
 }
+
+const mapStateToProps = ({ notes }) => {
+  return { notes };
+};
+
+export default connect(mapStateToProps, { fetchNotes, removeNote })(Notes);

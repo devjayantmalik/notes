@@ -5,6 +5,8 @@ import TabsPanel from "../../components/TabsPanel";
 import PreviewPanel from "../../components/PreviewPanel";
 import EditorTab from "../../components/EditorTab";
 
+import PropTypes from "prop-types";
+
 export default class CompactLayout extends React.Component {
   state = { editor: true, content: "" };
 
@@ -14,10 +16,25 @@ export default class CompactLayout extends React.Component {
     }
   };
 
+  componentDidMount() {
+    if (this.props.defaultValues) {
+      this.setState({ content: this.props.defaultValues.content });
+    }
+  }
+
   _handlePreviewClick = () => {
     if (this.state.editor === true) {
       this.setState({ editor: false });
     }
+  };
+
+  _handleNoteFormSubmit = (info) => {
+    if (this.state.content.length < 5) {
+      return alert("Please fill the content with atleast 5 characters.");
+    }
+
+    // send the submit info to the parent
+    this.props.onSubmit({ ...info, content: this.state.content });
   };
 
   _handleEditorTextChange = (content) => {
@@ -28,7 +45,10 @@ export default class CompactLayout extends React.Component {
     return (
       <SiteArea>
         <LeftSidebar>
-          <NoteForm />
+          <NoteForm
+            defaultValues={this.props.defaultValues}
+            onSubmit={this._handleNoteFormSubmit}
+          />
         </LeftSidebar>
         <ContentArea>
           <TabsPanel
@@ -38,6 +58,7 @@ export default class CompactLayout extends React.Component {
           <div>
             {this.state.editor && (
               <EditorTab
+                placeholder="Enter Your note in markdown here to store your precious knowledge. And you are free to hack it with script tags if you like."
                 onChange={this._handleEditorTextChange}
                 content={this.state.content}
               />
@@ -49,3 +70,8 @@ export default class CompactLayout extends React.Component {
     );
   }
 }
+
+CompactLayout.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  defaultValues: PropTypes.object,
+};
