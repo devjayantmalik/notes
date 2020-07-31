@@ -14,12 +14,12 @@ const StatItem = ({ title, value }) => {
 
 StatItem.defaultProps = {
   title: "",
-  value: "",
+  value: 0,
 };
 
 StatItem.propTypes = {
   title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
 export default StatItem;

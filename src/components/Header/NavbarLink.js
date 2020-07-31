@@ -3,10 +3,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const NavbarLink = ({ url, title }) => {
+const NavbarLink = ({ to, title }) => {
   return (
     <li className="navbar-item">
-      <Link to={url} className="navbar-link is-arrowless">
+      <Link to={to} className="navbar-link is-arrowless">
         {title}
       </Link>
     </li>
@@ -14,12 +14,12 @@ const NavbarLink = ({ url, title }) => {
 };
 
 NavbarLink.propTypes = {
-  url: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
 NavbarLink.defaultProps = {
-  url: "/",
+  to: "/",
   title: "",
 };
 

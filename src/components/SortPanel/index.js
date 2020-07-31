@@ -1,6 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
+import { SORT_OPTIONS } from "../../services/util";
+import { fetchNotes } from "../../services/notes/actions";
 
-export default class SortPanel extends React.Component {
+class SortPanel extends React.Component {
+  _handleSortChange = (e) => {
+    this.props.fetchNotes(null, e.target.value);
+  };
+
   render() {
     return (
       <section className="section">
@@ -8,9 +15,12 @@ export default class SortPanel extends React.Component {
           <div className="level-left">
             <p className="field">
               <label className="label">Sort By</label>
-              <select className="select">
-                <option>Date</option>
-                <option>Title</option>
+              <select className="select" onChange={this._handleSortChange}>
+                {SORT_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.title}
+                  </option>
+                ))}
               </select>
             </p>
           </div>
@@ -28,3 +38,5 @@ export default class SortPanel extends React.Component {
     );
   }
 }
+
+export default connect(null, { fetchNotes })(SortPanel);
